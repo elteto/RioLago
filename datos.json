@@ -1,0 +1,17 @@
+{
+  "generado": null,
+  "datos": {
+    "rio": {
+      "id": "A50012EE",
+      "nombre": "Río",
+      "fecha": null,
+      "nivel": null
+    },
+    "lago": {
+      "id": "A5004C40",
+      "nombre": "Lago",
+      "fecha": null,
+      "nivel": null
+    }
+  }
+}
