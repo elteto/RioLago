@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RioLago</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; color: #1f2937; }
+    main { max-width: 720px; margin: 40px auto; padding: 0 16px; }
+    h1 { margin-bottom: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+    .card { background: white; border-radius: 14px; padding: 24px; box-shadow: 0 4px 18px rgba(0,0,0,.08); }
+    .nombre { font-size: 18px; color: #4b5563; }
+    .nivel { font-size: 42px; font-weight: 700; margin: 10px 0; }
+    .fecha, #generado { color: #6b7280; font-size: 14px; }
+    .error { color: #b91c1c; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>RioLago</h1>
+    <div id="generado">Cargando datos...</div>
+
+    <section class="grid">
+      <article class="card">
+        <div class="nombre">Río</div>
+        <div class="nivel" id="rio-nivel">--</div>
+        <div class="fecha" id="rio-fecha">--</div>
+      </article>
+
+      <article class="card">
+        <div class="nombre">Lago</div>
+        <div class="nivel" id="lago-nivel">--</div>
+        <div class="fecha" id="lago-fecha">--</div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    async function cargarDatos() {
+      const respuesta = await fetch(`datos.json?t=${Date.now()}`, { cache: "no-store" });
+      if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+
+      const json = await respuesta.json();
+      const rio = json.datos.rio;
+      const lago = json.datos.lago;
+
+      document.getElementById("rio-nivel").textContent = rio.nivel == null ? "--" : `${rio.nivel.toFixed(3)} m`;
+      document.getElementById("rio-fecha").textContent = rio.fecha ?? "Sin datos";
+      document.getElementById("lago-nivel").textContent = lago.nivel == null ? "--" : `${lago.nivel.toFixed(3)} m`;
+      document.getElementById("lago-fecha").textContent = lago.fecha ?? "Sin datos";
+      document.getElementById("generado").textContent = json.generado ? `JSON generado: ${json.generado}` : "Todavía no se ejecutó la actualización";
+    }
+
+    cargarDatos().catch(error => {
+      const elemento = document.getElementById("generado");
+      elemento.textContent = `Error al cargar datos: ${error.message}`;
+      elemento.classList.add("error");
+    });
+  </script>
+</body>
+</html>
