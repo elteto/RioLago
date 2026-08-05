@@ -1,17 +1,17 @@
 {
-  "generado": null,
+  "generado": "2026-08-05 19:28:05",
   "datos": {
     "rio": {
       "id": "A50012EE",
       "nombre": "Río",
-      "fecha": null,
-      "nivel": null
+      "fecha": "2026-08-05 19:00:00",
+      "nivel": 11.17
     },
     "lago": {
       "id": "A5004C40",
       "nombre": "Lago",
-      "fecha": null,
-      "nivel": null
+      "fecha": "2026-08-05 18:45:00",
+      "nivel": 34.94
     }
   }
 }
