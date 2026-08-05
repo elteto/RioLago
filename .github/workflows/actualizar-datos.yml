@@ -2,8 +2,12 @@ name: Actualizar datos RioLago
 
 on:
   schedule:
-    - cron: "3,13,23,33,43,53 * * * *"
+    - cron: "7,17,27,37,47,57 * * * *"
+      timezone: "America/Argentina/Buenos_Aires"
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/actualizar-datos.yml"
 
 permissions:
   contents: write
@@ -40,6 +44,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No hay cambios para guardar"
           else
-            git commit -m "Actualizar niveles río y lago"
+            git commit -m "Actualizar niveles rio y lago"
             git push
           fi
