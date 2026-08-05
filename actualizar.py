@@ -19,7 +19,7 @@ ARCHIVO_SALIDA = Path("datos.json")
 ESTACIONES = {
     "rio": {
         "id": "A50012EE",
-        "nombre": "Río",
+        "nombre": "Rio",
     },
     "lago": {
         "id": "A5004C40",
